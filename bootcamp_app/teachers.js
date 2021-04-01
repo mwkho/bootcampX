@@ -15,9 +15,8 @@ pool.query(`
   JOIN teachers ON teachers.id = assistance_requests.teacher_id
   JOIN students ON students.id = assistance_requests.student_id
   JOIN cohorts ON cohorts.id = students.cohort_id
-  WHERE cohorts.name = '${cohort}'
-  ORDER BY teacher;`
-  )
+  WHERE cohorts.name = $1
+  ORDER BY teacher;`, [cohort])
   .then(
     res => {
       res.rows.forEach((teacher) => {
